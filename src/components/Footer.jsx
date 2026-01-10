@@ -79,7 +79,7 @@ export default function Footer() {
           <h3 className="text-white font-semibold mb-4">Contact Us</h3>
           <ul className="space-y-2 text-sm">
             <li>📍 India</li>
-            <li>📞 +91 1234567890</li>
+            <li>📞 +91 9903020636</li>
             <li>✉️ info@techmacproject.com</li>
           </ul>
         </div>

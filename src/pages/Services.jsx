@@ -4,25 +4,25 @@ export default function Services() {
       title: "Township & Real Estate",
       description:
         "End-to-end planning and development of residential and commercial townships with modern infrastructure, smart layouts, and sustainable design principles.",
-      image: "/services/real-estate.jpg",
+      image: "/images/service - 1.jpg",
     },
     {
       title: "Transport Infrastructure",
       description:
         "Execution of roads, highways, bridges, and transport infrastructure projects ensuring long-term durability, safety, and operational efficiency.",
-      image: "/services/transport.jpg",
+      image: "/images/service - 2.jpg",
     },
     {
       title: "Electrical Infrastructure",
       description:
         "Design and implementation of power distribution systems, substations, and electrical networks with strict compliance and reliability standards.",
-      image: "/services/electrical.jpg",
+      image: "/images/service - 3.jpg",
     },
     {
       title: "Telecom Infrastructure",
       description:
         "Deployment of telecom towers, fiber-optic networks, and communication infrastructure enabling seamless and scalable connectivity.",
-      image: "/services/telecom.jpg",
+      image: "/images/service - 4.jpg",
     },
   ];
 

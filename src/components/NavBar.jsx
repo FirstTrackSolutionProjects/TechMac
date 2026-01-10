@@ -6,14 +6,16 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+     <nav className="bg-gradient-to-r from-blue-500 via-sky-200 to-blue-900 text-white sticky top-0 z-50 shadow-md">
+       {/* <nav className="bg-slate-400 text-white sticky top-0 z-50 shadow-md"> */}
+
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         
         {/* Logo */}
         <img
             src="/logo.png"
             alt="Tech Mac Project Logo"
-            className="h-10 sm:h-12 w-auto object-contain scale-120"
+            className="h-10 sm:h-12 w-auto object-contain scale-130"
             />
 
 
@@ -23,6 +25,7 @@ export default function Navbar() {
           <Link to="/about" className="hover:text-amber-400">About</Link>
           <Link to="/services" className="hover:text-amber-400">Services</Link>
           <Link to="/projects" className="hover:text-amber-400">Projects</Link>
+          <Link to="/investors" className="hover:text-amber-400">Investors</Link>
           <Link to="/contact" className="hover:text-amber-400">Contact</Link>
         </div>
 
@@ -73,6 +76,13 @@ export default function Navbar() {
             className="block py-3 border-b border-slate-700 hover:text-amber-400"
           >
             Projects
+          </Link>
+          <Link
+            onClick={() => setIsOpen(false)}
+            to="/investors"
+            className="block py-3 border-b border-slate-700 hover:text-amber-400"
+          >
+            Investors
           </Link>
           <Link
             onClick={() => setIsOpen(false)}

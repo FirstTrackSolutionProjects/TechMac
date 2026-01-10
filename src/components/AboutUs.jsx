@@ -27,7 +27,7 @@ export default function AboutUs() {
         <div className="lg:w-1/2 relative">
           <div className="overflow-hidden rounded-2xl shadow-2xl transform transition-transform duration-500 hover:scale-105">
             <img
-              src="{aboutImage}"
+              src="/images/about.jpg"
               alt="Tech Mac Project"
               className="w-full h-auto object-cover"
             />

@@ -5,9 +5,12 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     subject: "",
     message: "",
   });
+
+  const [errors, setErrors] = useState({});
 
   const headingRef = useRef(null);
   const infoRef = useRef(null);
@@ -21,48 +24,77 @@ export default function Contact() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setErrors({ ...errors, [e.target.name]: "" });
+  };
+
+  // ✅ Validation logic
+  const validate = () => {
+    let newErrors = {};
+
+    if (!/^[A-Za-z ]+$/.test(formData.name)) {
+      newErrors.name = "Name should contain only letters";
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Enter a valid email address";
+    }
+
+    if (!/^[6-9]\d{9}$/.test(formData.phone)) {
+      newErrors.phone = "Enter valid 10 digit Indian mobile number";
+    }
+
+    if (formData.message.length < 10) {
+      newErrors.message = "Message must be at least 10 characters";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validate()) return;
+
     console.log(formData);
-    alert("Message sent!");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    alert("Message sent successfully!");
+
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+    });
   };
 
-  // Scroll animation effect
+  // Scroll animation
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             if (entry.target === headingRef.current)
-              setVisible((prev) => ({ ...prev, heading: true }));
+              setVisible((p) => ({ ...p, heading: true }));
             if (entry.target === infoRef.current)
-              setVisible((prev) => ({ ...prev, info: true }));
+              setVisible((p) => ({ ...p, info: true }));
             if (entry.target === formRef.current)
-              setVisible((prev) => ({ ...prev, form: true }));
+              setVisible((p) => ({ ...p, form: true }));
           }
         });
       },
       { threshold: 0.3 }
     );
 
-    if (headingRef.current) observer.observe(headingRef.current);
-    if (infoRef.current) observer.observe(infoRef.current);
-    if (formRef.current) observer.observe(formRef.current);
+    headingRef.current && observer.observe(headingRef.current);
+    infoRef.current && observer.observe(infoRef.current);
+    formRef.current && observer.observe(formRef.current);
 
-    return () => {
-      if (headingRef.current) observer.unobserve(headingRef.current);
-      if (infoRef.current) observer.unobserve(infoRef.current);
-      if (formRef.current) observer.unobserve(formRef.current);
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
     <section className="py-24 bg-slate-100">
       <div className="max-w-7xl mx-auto px-4">
-        {/* Heading */}
         <h2
           ref={headingRef}
           className={`text-4xl sm:text-5xl font-extrabold text-center mb-12 transition-all duration-1000 ${
@@ -73,118 +105,106 @@ export default function Contact() {
         </h2>
 
         <div className="grid gap-12 md:grid-cols-2">
-          {/* Contact Info + Map */}
+          {/* LEFT INFO */}
           <div
             ref={infoRef}
-            className={`flex flex-col justify-start space-y-8 transition-all duration-1000 ${
+            className={`space-y-8 transition-all duration-1000 ${
               visible.info ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
             }`}
           >
             <h3 className="text-2xl font-semibold">Contact Info</h3>
-            <p className="text-slate-700">
-              Reach out to us for any queries or project discussions.
-            </p>
 
-            <div className="flex items-center gap-3 text-slate-800">
-              <FaEnvelope className="w-5 h-5 text-amber-500" />
+            <div className="flex items-center gap-3">
+              <FaEnvelope className="text-amber-500" />
               <span>info@techmacproject.com</span>
             </div>
 
-            <div className="flex items-center gap-3 text-slate-800">
-              <FaPhoneAlt className="w-5 h-5 text-amber-500" />
-              <span>+91 1234567890</span>
+            <div className="flex items-center gap-3">
+              <FaPhoneAlt className="text-amber-500" />
+              <span>+91 9903020636</span>
             </div>
 
-            <div className="flex items-center gap-3 text-slate-800">
-              <FaMapMarkerAlt className="w-5 h-5 text-amber-500" />
-              <span>123 Tech Mac Lane, Your City, India</span>
-            </div>
-
-            {/* Google Map */}
-            <div className="mt-6 w-full h-64 rounded-xl overflow-hidden shadow-md">
-              <iframe
-                title="Tech Mac Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.8904794511337!2d90.4125!3d23.8103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b85de0c12345%3A0xabcdef123456!2sYour%20Company%20Location!5e0!3m2!1sen!2sin!4v1600000000000!5m2!1sen!2sin"
-                className="w-full h-full border-0"
-                allowFullScreen=""
-                loading="lazy"
-              ></iframe>
+            <div className="flex items-center gap-3">
+              <FaMapMarkerAlt className="text-amber-500" />
+              <span>123 Tech Mac Lane, India</span>
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* FORM */}
           <form
             ref={formRef}
             onSubmit={handleSubmit}
-            className={`bg-white p-8 rounded-2xl shadow-md space-y-6 transition-all duration-1000 ${
+            className={`bg-white p-8 rounded-2xl shadow-md space-y-5 transition-all duration-1000 ${
               visible.form ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
             }`}
           >
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div>
-                <label className="block mb-2 font-medium" htmlFor="name">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition"
-                />
-              </div>
-
-              <div>
-                <label className="block mb-2 font-medium" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition"
-                />
-              </div>
+            {/* Name */}
+            <div>
+              <input
+                name="name"
+                placeholder="Name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full border p-3 rounded-lg"
+              />
+              {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
             </div>
 
+            {/* Email */}
             <div>
-              <label className="block mb-2 font-medium" htmlFor="subject">
-                Subject
-              </label>
               <input
-                type="text"
-                id="subject"
-                name="subject"
-                value={formData.subject}
+                name="email"
+                placeholder="Email"
+                value={formData.email}
                 onChange={handleChange}
-                required
-                className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition"
+                className="w-full border p-3 rounded-lg"
+              />
+              {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+            </div>
+
+            {/* Phone with +91 */}
+            <div className="flex">
+              <span className="px-4 py-3 border bg-gray-100 rounded-l-lg">
+                +91
+              </span>
+              <input
+                name="phone"
+                maxLength="10"
+                placeholder="Mobile Number"
+                value={formData.phone}
+                onChange={handleChange}
+                className="w-full border p-3 rounded-r-lg"
               />
             </div>
+            {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
 
+            {/* Subject */}
+            <input
+              name="subject"
+              placeholder="Subject"
+              value={formData.subject}
+              onChange={handleChange}
+              className="w-full border p-3 rounded-lg"
+            />
+
+            {/* Message */}
             <div>
-              <label className="block mb-2 font-medium" htmlFor="message">
-                Message
-              </label>
               <textarea
-                id="message"
                 name="message"
-                rows="5"
+                rows="4"
+                placeholder="Message"
                 value={formData.message}
                 onChange={handleChange}
-                required
-                className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition"
-              ></textarea>
+                className="w-full border p-3 rounded-lg"
+              />
+              {errors.message && (
+                <p className="text-red-500 text-sm">{errors.message}</p>
+              )}
             </div>
 
             <button
               type="submit"
-              className="w-full bg-amber-500 text-black font-semibold py-3 rounded-xl shadow-md hover:bg-amber-600 hover:shadow-xl transition transform hover:-translate-y-1"
+              className="w-full bg-amber-500 py-3 rounded-xl font-semibold hover:bg-amber-600"
             >
               Send Message
             </button>

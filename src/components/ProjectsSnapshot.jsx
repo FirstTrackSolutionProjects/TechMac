@@ -3,6 +3,7 @@ export default function ProjectsSnapshot() {
     "Smart Township Development",
     "National Highway Expansion",
     "Electrical Grid Upgrade",
+    "Telecom Network Rollout"
   ];
 
   return (
@@ -12,7 +13,7 @@ export default function ProjectsSnapshot() {
           Key Projects
         </h2>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {projects.map((project) => (
             <div
               key={project}
