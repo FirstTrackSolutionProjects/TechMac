@@ -11,7 +11,7 @@ export default function AboutUs() {
             About
           </h2>
           <p className="text-slate-600 text-lg mb-6">
-            Tech Mac Project Private Limited specializes in delivering
+            TechMac Project Private Limited specializes in delivering
             high-quality infrastructure solutions across real estate,
             transport, electrical, and telecom sectors with a strong
             commitment to safety, quality, and timely delivery.

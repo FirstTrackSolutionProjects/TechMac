@@ -33,7 +33,7 @@ export default function About() {
         />
         <div className="relative text-center px-4">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
-            About Tech Mac Project
+            About TechMac Project
           </h1>
           <p className="text-slate-200 max-w-2xl mx-auto">
             Delivering future-ready infrastructure with trust, safety & excellence.
@@ -50,7 +50,7 @@ export default function About() {
               Company Overview
             </h2>
             <p className="max-w-3xl mx-auto text-slate-600">
-              Tech Mac Project Private Limited is a professionally managed
+              TechMac Project Private Limited is a professionally managed
               infrastructure company delivering integrated solutions across
               civil, transport, electrical, and telecom sectors.
             </p>
@@ -100,7 +100,7 @@ export default function About() {
           <div>
             <h2 className="text-3xl font-bold mb-5">Who We Are</h2>
             <p className="text-slate-600 mb-4">
-              Tech Mac Project Private Limited delivers infrastructure solutions
+              TechMac Project Private Limited delivers infrastructure solutions
               backed by modern engineering practices and transparent execution.
             </p>
             <p className="text-slate-600">

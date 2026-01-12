@@ -21,7 +21,7 @@ export default function Footer() {
           />
 
           <p className="text-sm leading-relaxed mb-4">
-            Tech Mac Project Private Limited delivers reliable and
+            TechMac Project Private Limited delivers reliable and
             future-ready infrastructure solutions across township,
             transport, electrical, and telecom sectors.
           </p>
@@ -77,6 +77,16 @@ export default function Footer() {
                 Contact
               </Link>
             </li>
+            <li>
+            <Link to="/privacy-policy" className="hover:text-amber-400">
+              Privacy Policy
+            </Link>
+            </li>
+            <li>
+            <Link to="/terms" className="hover:text-amber-400">
+              Terms of Use
+            </Link>
+            </li>
           </ul>
         </div>
 
@@ -88,22 +98,7 @@ export default function Footer() {
             <li>Transport Infrastructure</li>
             <li>Electrical Infrastructure</li>
             <li>Telecom Infrastructure</li>
-                <li>
-            <Link
-              to="/privacy-policy"
-              className="hover:text-amber-400"
-            >
-              Privacy Policy
-            </Link>
-            </li>
-            <li>
-            <Link
-              to="/terms-of-use"
-              className="hover:text-amber-400"
-            >
-              Terms of Use
-            </Link>
-            </li>
+              
           </ul>
         </div>
 
@@ -119,15 +114,14 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-slate-700 py-4 text-sm text-slate-400">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-3">
+    <div className="border-t border-slate-700 py-4 text-sm text-slate-400">
+        <div className="max-w-7xl mx-auto px-4 flex justify-center items-center text-center">
           <span>
-            © 2026 Tech Mac Project Private Limited. All Rights Reserved.
+            ©2026 TechMac Project Pvt Ltd | Developed by First Track Solution Technologies. All Rights Reserved.
           </span>
-
-       
         </div>
       </div>
+
     </footer>
   );
 }
